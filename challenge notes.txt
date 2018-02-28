@@ -1,0 +1,25 @@
+1. GPS location data:
+Loader vs service for long-running task.
+Keep the user informed on the UI about whether GPS data is available or not. Initial testing showed about a 40 second delay in getting GPS data from the live device.
+Cached existing GPS data should go stale; should app be allowed to become unusable?
+Maybe allow user to pick location from map interface (or 3D globe on a modern device), at least for testing.
+
+2. ISS API call:
+Deeper error handling; the code right now only looks for a success or error callback. When the URL is bad, for example, there is an uncaught exception which goes out to logcat.
+Verification of the JSON data beyond the catchall exception; handle the case where a good HTTP response contains a properly formatted error (for example, when the lat/long is out of bounds)
+Selection of HTTP client to use (Volley, Retrofit, etc)
+
+3. Display of data:
+Cached existing ISS data should go stale.
+Custom layout for list elements?
+ListView vs RecyclerView
+LoaderManager to wrangle the model behind the list
+
+4. Other issues:
+Permission management; if a user manually disables a required permission while app is running, it must be gracefully handled
+Compatibility; all of the above issues must be completed for a reasonable stretch of Android OS levels.
+App destruction on rotate; redrawing existing data and continuing to update.
+
+
+On the surface, this challenge is pretty direct and doable; as you dig into each piece of the requirements a larger body of effort is revealed.
+I did not complete the challenge in the allotted time.
